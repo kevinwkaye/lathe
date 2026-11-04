@@ -1,0 +1,98 @@
+At 44100 Hz
+  01_lush_chorus                     ok
+  02_warped_record                   ok
+  03_deep_fast_vibrato               ok
+  04_slow_deep                       ok
+  05_square_halves                   ok
+  06_warp_hard_left                  ok
+  07_tone_dark                       ok
+  08_tone_thin                       ok
+  09_mk2_murky                       ok
+  10_lofi_goo                        ok
+  11_volume_pushed                   ok
+  12_dry_is_dry                      ok
+  13_bypass                          ok
+  14_ramp_on_engage                  ok
+  15_ramp_fall_top                   ok
+  16_bounce                          ok
+  17_hold_to_ramp                    ok
+  18_fire_and_reset                  ok
+  19_pause_and_flurry                ok
+  20_brake                           ok
+  21_whammy                          ok
+  22_expression_on_ramp_targets      ok
+  23_bass_41hz_lows_dry              ok
+  24_bass_31hz_lows_dry              ok
+  25_bass_41hz_full_range            ok
+  26_miso_wide                       ok
+  27_mono                            ok
+    (hiss, worst case: -75.9 dBFS)
+  28_hiss_true_to_pedal              ok
+At 48000 Hz
+  01_lush_chorus                     ok
+  02_warped_record                   ok
+  03_deep_fast_vibrato               ok
+  04_slow_deep                       ok
+  05_square_halves                   ok
+  06_warp_hard_left                  ok
+  07_tone_dark                       ok
+  08_tone_thin                       ok
+  09_mk2_murky                       ok
+  10_lofi_goo                        ok
+  11_volume_pushed                   ok
+  12_dry_is_dry                      ok
+  13_bypass                          ok
+  14_ramp_on_engage                  ok
+  15_ramp_fall_top                   ok
+  16_bounce                          ok
+  17_hold_to_ramp                    ok
+  18_fire_and_reset                  ok
+  19_pause_and_flurry                ok
+  20_brake                           ok
+  21_whammy                          ok
+  22_expression_on_ramp_targets      ok
+  23_bass_41hz_lows_dry              ok
+  24_bass_31hz_lows_dry              ok
+  25_bass_41hz_full_range            ok
+  26_miso_wide                       ok
+  27_mono                            ok
+    (hiss, worst case: -76.2 dBFS)
+  28_hiss_true_to_pedal              ok
+At 96000 Hz
+  01_lush_chorus                     ok
+  02_warped_record                   ok
+  03_deep_fast_vibrato               ok
+  04_slow_deep                       ok
+  05_square_halves                   ok
+  06_warp_hard_left                  ok
+  07_tone_dark                       ok
+  08_tone_thin                       ok
+  09_mk2_murky                       ok
+  10_lofi_goo                        ok
+  11_volume_pushed                   ok
+  12_dry_is_dry                      ok
+  13_bypass                          ok
+  14_ramp_on_engage                  ok
+  15_ramp_fall_top                   ok
+  16_bounce                          ok
+  17_hold_to_ramp                    ok
+  18_fire_and_reset                  ok
+  19_pause_and_flurry                ok
+  20_brake                           ok
+  21_whammy                          ok
+  22_expression_on_ramp_targets      ok
+  23_bass_41hz_lows_dry              ok
+  24_bass_31hz_lows_dry              ok
+  25_bass_41hz_full_range            ok
+  26_miso_wide                       ok
+  27_mono                            ok
+    (hiss, worst case: -79.1 dBFS)
+  28_hiss_true_to_pedal              ok
+
+CPU per instance, one core, 48 kHz (bass split, MISO, bounce on):
+  HiFi   64 samples: 1.26%
+  HiFi  128 samples: 1.29%
+  mkII   64 samples: 1.26%
+  mkII  128 samples: 1.26%
+
+PASSED: 0 failed
