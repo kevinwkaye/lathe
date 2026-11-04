@@ -131,9 +131,12 @@ Per instance, one core, the heaviest case (bass split, MISO, two knobs bouncing)
 
 | Machine | 48 kHz, 64 samples | 48 kHz, 128 samples |
 | --- | --- | --- |
-| Windows x64, GitHub runner | see `cpu-windows-x64.txt` | |
-| Linux ARM64, GitHub runner | see `cpu-linux-arm64.txt` | |
-| Linux x64, the build container (HiFi) | 1.32% | 1.35% |
+| Windows x64, GitHub runner (HiFi) | 1.51% | 1.56% |
+| Windows x64, GitHub runner (mkII) | 1.50% | 1.61% |
+| Linux ARM64, GitHub runner (HiFi) | 1.34% | 1.33% |
+| Linux ARM64, GitHub runner (mkII) | 1.34% | 1.33% |
+
+Measured for v0.1 on 4 November 2026. A Raspberry Pi 5 core is slower than these runners, so expect a few times these figures there, still small.
 
 Every build writes fresh figures for Windows x64 and Linux ARM64 to `cpu-windows-x64.txt` and `cpu-linux-arm64.txt` on the builds branch.
 
