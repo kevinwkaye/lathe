@@ -2,7 +2,7 @@
 
 Written 4 November 2026. Lathe recreates the behaviour of a digitally controlled analog chorus and vibrato pedal (the Chase Bliss Audio Warped Vinyl) in the Flip Fella dark family look. All DSP will be original code written from public descriptions of the pedal. The plugin UI names no brands.
 
-Status: research done, questions answered (see Decisions), mockup next. Updated the same day from the mkII manual Kevin supplied, which corrected several details below.
+Status: built as v0.1 (4 November 2026) after the mockup was approved. See the README for what shipped. Updated the same day from the mkII manual Kevin supplied, which corrected several details below.
 
 ## Versions
 
@@ -28,7 +28,7 @@ Status: research done, questions answered (see Decisions), mockup next. Updated 
 | --- | --- | --- |
 | **Tone** | HiFi: noon is transparent, clockwise shaves off lows, anticlockwise shaves off highs. mkII: wet side only (never the dry), clockwise transparent and shimmery, anticlockwise dark and murky. On the mkII it becomes the Ramp time knob when any ramp dip is on | A tilt filter on the wet path: noon flat, clockwise a gentle low cut (up to about 250 Hz) plus air, anticlockwise a gentle high cut (down to about 1.5 kHz). In mkII voice it follows the mkII's darker law |
 | **Volume** | Original and mkII: level of the effect, with a JFET boost that gives some amp-like grit when pushed. Can be ramped or put on expression, so it doubles as tremolo or a volume pedal | Output level, −inf to +12 dB, unity at about 2 o'clock, with a gentle soft clip above unity for the JFET grit. Lives on the panel and can be ramped (tremolo) |
-| **Lag** (HiFi) | Delay between dry and wet. More lag means more interference across the spectrum and a lusher chorus. Adds a little noise as it rises | The base delay of the modulated line, about 1 ms to 25 ms on an exponential taper. Clean in Lathe; the noise is a separate Wear control so lush doesn't have to mean hissy |
+| **Lag** (HiFi) | Delay between dry and wet. More lag means more interference across the spectrum and a lusher chorus. Adds a little noise as it rises | The base delay of the modulated line, about 1 ms to 25 ms on an exponential taper. Hiss rises with it as on the pedal; the Hiss trim on the Pedal page turns it down |
 | **Mix** | Dry against wet. Fully wet is pure vibrato, around noon is chorus | Equal-power blend. Fully clockwise is all wet (vibrato), noon is a classic chorus |
 | **RPM** (Rate) | Vibrato rate. Overridden by tap tempo | 0.1 Hz to 12 Hz, exponential, with a fine readout in Hz and, when synced, the note value. Tap or host sync overrides it until you touch the knob, as on the pedal |
 | **Depth** | Vibrato width. Fully up is "insane, pitch-bending" modulation | Delay sweep in milliseconds, scaled by rate so the pitch swing stays musical at any speed, reaching about ±1 semitone at full clockwise (more than enough for warped records) |
@@ -78,13 +78,13 @@ From reviews, demos and the maker's text: analog BBD warmth with a digital brain
 
 - **Warped record**: Mix full, Depth around 10 o'clock, RPM slow (about 0.5 Hz), Warp off-centre, left sine, right triangle. The lopsided pitch sag of an off-centre record.
 - **Lush chorus**: Mix noon, Lag 2 to 3 o'clock, Depth 9 to 10 o'clock, RPM about 1 Hz, both triangle.
-- **Lo-fi tape**: Depth low, Lag low, Tone anticlockwise, mkII voice, Wear up. The cassette warble the guides describe.
+- **Lo-fi tape**: Depth low, Lag low, Tone anticlockwise, mkII voice, Lo-Fi on. The cassette warble the guides describe.
 - **Leslie-ish**: Mix noon, RPM fast, Depth low, square halves softened.
 - **Ramp into vibrato**: Depth and RPM ramping up from minimum over a few seconds as you switch on, so a chord slowly melts.
 
 How Lathe gets there while staying hi-fi:
 
-- **Delay line**: 4x oversampled modulated delay with 4-point Hermite interpolation (or polyphase in the lush preset), so deep vibrato and slow sweeps stay free of zipper noise and aliasing. The "hi-fi" part.
+- **Delay line**: a modulated delay read with 4-point Hermite interpolation, so deep vibrato and slow sweeps stay free of zipper noise and dulling, with full floating-point headroom. The "hi-fi" part.
 - **True to the pedal's noise** (Kevin's call): hiss in the wet path that rises with Lag and with Tone past noon, as the maker's FAQ describes, lower in HiFi voice, higher in mkII voice, highest with Lo-Fi. A gentle anti-alias roll-off that follows the delay time like a BBD clock, light compander breathing, and soft saturation. A **Noise** trim on the Deep page goes from 0 to twice the pedal's, at 1x by default.
 - **Wow and flutter**: a slow random drift on the rate (Warp's skew plus a small irregularity) so it never sounds like a metronome, because real platters don't.
 - **Stereo, MISO by default** (mono in, stereo out, Kevin's call): the left and right wet signals take opposite halves of the modulation, so chorus spreads wide and vibrato moves across the field. A Width control on the Deep page goes from mono (the pedal's own sound) to fully opposed. Stereo in is a switch for stereo sources.
@@ -92,7 +92,7 @@ How Lathe gets there while staying hi-fi:
 ## Bass
 
 - **Keep lows dry**, a **BASS** button on the panel, off by default (Kevin's call): a Linkwitz-Riley crossover splits the input, the lows skip the modulation and rejoin the wet highs. Its frequency is a small knob beside the button, 60 Hz to 400 Hz, 150 Hz by default. The low band is delayed by the line's centre delay so the crossover sums flat with no comb or phase hole, even fully wet.
-- **Headroom**: the engine works in floating point with no clipping before the optional Wear saturation, so a low B string at full level passes clean.
+- **Headroom**: the engine works in floating point with only a light blend of BBD saturation (10% in HiFi), so a low B string at -2 dBFS passes clean.
 - **Tone's low cut** stays gentle (12 dB per octave at most, and only clockwise of noon), so the knob at noon is truly flat for bass.
 - Test cases will include a 41 Hz E and a 31 Hz B at full scale, with and without the split, checking level, phase and no clipping.
 
